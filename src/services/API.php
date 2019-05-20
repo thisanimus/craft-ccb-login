@@ -17,12 +17,7 @@ use Craft;
 use craft\base\Component;
 
 /**
- * CraftccbloginService Service
- *
- * All of your plugin’s business logic should go in services, including saving data,
- * retrieving data, etc. They provide APIs that your controllers, template variables,
- * and other plugins can interact with.
- *
+ * 
  * https://craftcms.com/docs/plugins/services
  *
  * @author    Andrew Hale
@@ -31,23 +26,14 @@ use craft\base\Component;
  */
 class API extends Component
 {
-    // Public Methods
-    // =========================================================================
 
     /**
-     * This function can literally be anything you want, and you can have as many service
-     * functions as you want
-     *
-     * From any other plugin file, call it like this:
-     *
-     *     Craftccblogin::$plugin->craftccbloginService->exampleService()
-     *
      * @return mixed
      */
 
     protected function apiConnect(){
 
-        $apiConnect = new \CCB\Api(Craftccblogin::$plugin->getSettings()->ccbApiUser, Craftccblogin::$plugin->getSettings()->ccbApiPassword, Craftccblogin::$plugin->getSettings()->apiUrl);
+        $apiConnect = new \CCB\Api(Craftccblogin::$plugin->getSettings()->ccbApiUser, Craftccblogin::$plugin->getSettings()->ccbApiPassword, Craftccblogin::$plugin->getSettings()->ccbApiUrl);
         return $apiConnect;
     }
 

@@ -27,5 +27,6 @@ return [
     // This controls blah blah blah
     "ccbApiPassword" => true,
     "ccbApiUser" => true,
+    "ccbApiUrl" => true,
 
 ];

@@ -1,6 +1,6 @@
-# craft-ccb-login plugin for Craft CMS 3.x
+# CCB API Authentication for Craft CMS 3.x
 
-A session-based login for Craft CMS 3.X that validates via the Church Community Builder API.
+A session-based login for Craft CMS 3.X that authenticates users via the Church Community Builder API.
 
 ![Screenshot](resources/img/plugin-logo.png)
 
@@ -69,7 +69,7 @@ Here are some templates to get you started:
 <form id="craftLogin" method="post" accept-charset="UTF-8">
 	{{ csrfInput() }}
 	<input type="hidden" name="action" value="craft-ccb-login/default/">
-		<label>Username</label>
+	<label>Username</label>
 	<input type="text" name="formLogin" value="">
 	<br />
 	<label>Password</label>
