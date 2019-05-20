@@ -28,7 +28,6 @@ In the Craft Control Panel, enter your CCB API User Credentials.  These will be 
 
 ## Overview
 
-Login:
 - User submits a username and password through a form on the front end of your site.
 - The plugin passes those creds to the "individual_profile_from_login_password" service of the CCB API.
 - If the user exists in CCB, the plugin then fetches the groups this person is a part of, their name, and profile picture.
@@ -79,8 +78,8 @@ Here are some templates to get you started:
 	<input type="submit" value="Login">
 </form>
 	
-<a href="https://countrysidebible.ccbchurch.com/w_password.php">Forgot Password?</a>
-<a href="https://countrysidebible.ccbchurch.com/w_sign_up.php">Sign Up</a>
+<a href="https://yourChurchName.ccbchurch.com/w_password.php">Forgot Password?</a>
+<a href="https://yourChurchName.ccbchurch.com/w_sign_up.php">Sign Up</a>
 ```
 
 #### Logout
