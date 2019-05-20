@@ -1,0 +1,47 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * craft-ccb-login plugin for Craft CMS 3.x
+ *
+ * craft-ccb-login Settings.twig
+ *
+ * @author    Andrew Hale
+ * @copyright Copyright (c) 2019 Andrew Hale
+ * @link      thisanimus.com
+ * @package   Craftccblogin
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("countrysidebible\\craftccblogin\\assetbundles\\craftccblogin\\CraftccbloginAsset") %}
+
+{{ forms.textField({
+    label: 'CCB API User',
+    instructions: 'Enter the CCB API User Name',
+    id: 'ccbApiUser',
+    name: 'ccbApiUser',
+    value: settings['ccbApiUser']})
+}}
+{{ forms.textField({
+    label: 'CCB API Password',
+    instructions: 'Enter the CCB API Password',
+    id: 'ccbApiPassword',
+    name: 'ccbApiPassword',
+    value: settings['ccbApiPassword']})
+}}
+{{ forms.textField({
+    label: 'CCB Base Url',
+    instructions: 'Enter the CCB Base Url',
+    id: 'baseUrl',
+    name: 'baseUrl',
+    value: settings['baseUrl']})
+}}
+{{ forms.textField({
+    label: 'CCB API Url',
+    instructions: 'Enter the CCB API Url',
+    id: 'apiUrl',
+    name: 'apiUrl',
+    value: settings['apiUrl']})
+}}

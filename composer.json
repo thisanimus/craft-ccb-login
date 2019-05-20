@@ -1,0 +1,44 @@
+{
+    "name": "countrysidebible/craft-ccb-login",
+    "description": "Log in via the CCB API, and log user info in session.",
+    "type": "craft-plugin",
+    "version": "1.0.3",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "craft-ccb-login"
+    ],
+    "support": {
+        "docs": "https://github.com/countrysidebible/craft-ccb-login/blob/master/README.md",
+        "issues": "https://github.com/countrysidebible/craft-ccb-login/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Hale",
+            "homepage": "thisanimus.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1",
+        "countrysidebible/ccb-api-connect": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "countrysidebible\\craftccblogin\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "craft-ccb-login",
+        "handle": "craft-ccb-login",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/countrysidebible/craft-ccb-login/master/CHANGELOG.md",
+        "components": {
+            "craftccbloginService": "countrysidebible\\craftccblogin\\services\\CraftccbloginService"
+        },
+        "class": "countrysidebible\\craftccblogin\\Craftccblogin"
+    }
+}
