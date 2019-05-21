@@ -22,7 +22,7 @@ use craft\base\Component;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.4
+ * @since     1.0.5
  */
 class API extends Component
 {
@@ -40,11 +40,12 @@ class API extends Component
     public function logout(){
         $session = new craft\web\Session;
         
-        $session->remove('authenticated');
-        $session->remove('id');
-        $session->remove('name');
-        $session->remove('groups');
-        $session->remove('error');
+        $session->set('authenticated', false);
+        $session->has('id') ? $session->remove('id') : false;
+        $session->has('name') ? $session->remove('name') : false;
+        $session->has('groups') ? $session->remove('groups') : false;
+        $session->has('image') ? $session->remove('image') : false;
+        $session->has('error') ? $session->remove('error') : false;
     }
 
     public function getUserGroups($id) 
@@ -121,14 +122,12 @@ class API extends Component
             
         }else{
 
+            $this->logout();
+
             $user = [
                 'authenticated'=>false,
             ];
             
-            $session->remove('authenticated');
-            $session->remove('id');
-            $session->remove('name');
-            $session->remove('groups');
 
 
             $errorArray = [];
