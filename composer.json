@@ -30,7 +30,7 @@
         }
     },
     "extra": {
-        "name": "craft-ccb-login",
+        "name": "Craft CCB Login",
         "handle": "craft-ccb-login",
         "hasCpSettings": true,
         "hasCpSection": false,

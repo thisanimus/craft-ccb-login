@@ -32,7 +32,7 @@ class Settings extends Model
      */
     public $ccbApiUser;
     public $ccbApiPassword;
-    public $apiUrl;
+    public $ccbApiUrl;
 
     // Public Methods
     // =========================================================================

@@ -84,7 +84,7 @@ class Craftccblogin extends Plugin
  */
         Craft::info(
             Craft::t(
-                'Craft CCB Login',
+                'craft-ccb-login',
                 '{name} plugin loaded',
                 ['name' => $this->name]
             ),
