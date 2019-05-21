@@ -117,10 +117,10 @@ Here are some templates to get you started:
 		<br />
 		<input type="submit" value="Login">
 	</form>
-	<a href="https://countrysidebible.ccbchurch.com/w_password.php">Forgot Password?</a><br>
-	<a href="https://countrysidebible.ccbchurch.com/w_sign_up.php">Sign Up</a>
+	<a href="https://yourChurchName.ccbchurch.com/w_password.php">Forgot Password?</a><br>
+	<a href="https://yourChurchName.ccbchurch.com/w_sign_up.php">Sign Up</a>
 
-	<form style="display:none" id="ccbLogin" action="https://countrysidebible.ccbchurch.com/login.php" method="post" target="_blank">
+	<form style="display:none" id="ccbLogin" action="https://yourChurchName.ccbchurch.com/login.php" method="post" target="_blank">
 		<input type="hidden" name="ax" value="login">
 		<input type="text" name="form[login]" value="">
 		<input type="password" name="form[password]" value="">
