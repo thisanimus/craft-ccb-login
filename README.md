@@ -93,7 +93,7 @@ Here are some templates to get you started:
 ```
 
 
-#### Conditionla Markup with CCB Login Sync
+#### Conditional Markup with CCB Login Sync
 
 ```html
 {% set session = craft.craftccblogin.userSession %}
