@@ -22,7 +22,7 @@ use craft\base\Model;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.5
+ * @since     1.0.6
  */
 class Settings extends Model
 {

@@ -92,57 +92,68 @@ Here are some templates to get you started:
 </form>
 ```
 
-## Login Synchronization
-If you like, you can include the CCB login form alongside the session login:
+
+#### Conditionla Markup with CCB Login Sync
 
 ```html
-<h1>Session</h1>
-{{ dump(craft.craftccblogin.userSession) }}
+{% set session = craft.craftccblogin.userSession %}
 
+{% if session.authenticated == false %}
+	{% if session.error is defined %}
+		<div class="alert">
+			{{ session.error }}
+		</div>
+	{% endif %}
+	<form id="craftLogin" method="post" accept-charset="UTF-8">
+		{{ csrfInput() }}
+		<input type="hidden" name="action" value="craft-ccb-login/default/">
+		<label>Login</label>
+		<input type="text" name="formLogin" value="" placeholder="Login"><br>
+		<label>Password</label>
+		<input type="password" name="formPassword" value="" placeholder="Password"><br>
+		<input type="checkbox" name="formCCB" value="1">
+		<label>Log me in to Community too.</label><br>
+		This will open a new tab and log you in to Church Community Builder at the same time you are being logged into the Countryside Bible Church website.
+		<br />
+		<input type="submit" value="Login">
+	</form>
+	<a href="https://countrysidebible.ccbchurch.com/w_password.php">Forgot Password?</a><br>
+	<a href="https://countrysidebible.ccbchurch.com/w_sign_up.php">Sign Up</a>
 
-<h1>Login</h1>
+	<form style="display:none" id="ccbLogin" action="https://countrysidebible.ccbchurch.com/login.php" method="post" target="_blank">
+		<input type="hidden" name="ax" value="login">
+		<input type="text" name="form[login]" value="">
+		<input type="password" name="form[password]" value="">
+		<input type="submit" value="Login">
+	</form>
 
-<form id="craftLogin" method="post" accept-charset="UTF-8">
-	{{ csrfInput() }}
-	<input type="hidden" name="action" value="craft-ccb-login/default/">
-	<label>Username</label>
-	<input type="text" name="formLogin" value="">
-	<br />
-	<label>Password</label>
-	<input type="password" name="formPassword" value="">
-	<br />
-	<label>Log me in to Community too.</label>
-	<input type="checkbox" name="formCCB" value="1"><br />
-	Checking this box will open a new tab and automatically log you in to Church Community Builder.
-	<br />
-	<input type="submit" value="Login">
-</form>
+{% elseif session.authenticated == true %}
+	<img src="{{ craft.craftccblogin.userSession.image }}"/>
+	<h1>{{ session.name }}</h1>
+	{% if session.groups|length > 0 %}
+		<h3>Group IDs:</h3>
+		<ul>
+			{% for group in session.groups %}
+				<li>{{ group }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 
-<a href="https://yourChurchName.ccbchurch.com/w_password.php">Forgot Password?</a>
-<a href="https://yourChurchName.ccbchurch.com/w_sign_up.php">Sign Up</a>
+	<form method="post" accept-charset="UTF-8">
+		{{ csrfInput() }}
+		<input type="hidden" name="action" value="craft-ccb-login/default/">
+		<input type="hidden" name="formLogout" value="true">
+		<input type="submit" value="Logout">
+	</form>
 
+{% endif %}
 
-<h1>Log Out</h1>
-
-<form method="post" accept-charset="UTF-8">
-	{{ csrfInput() }}
-	<input type="hidden" name="action" value="craft-ccb-login/default/">
-	<input type="hidden" name="formLogout" value="true">
-	<input type="submit" value="Logout">
-</form>
-
-<form style="display:none" id="ccbLogin" action="https://yourChurchName.ccbchurch.com/login.php" method="post" target="_blank">
-	<input type="hidden" name="ax" value="login">
-	<input type="text" name="form[login]" value="">
-	<input type="password" name="form[password]" value="">
-	<input type="submit" value="Login">
-</form>
-
-{% js %}
+{% js at endBody %}
 
 // get the forms
 const craftLogin = document.getElementById('craftLogin');
 const cbbLogin = document.getElementById('ccbLogin');
+var time = 0;
 
 // on craft form submit, prevent the default behavior
 craftLogin.addEventListener('submit', function(e){
@@ -154,12 +165,10 @@ craftLogin.addEventListener('submit', function(e){
 	
 	if(craftLogin.querySelector('input[name="formCCB"]').checked == true){
 		// give a little bit of time for the ccb form submission
-		let time = 1000;
+		var time = 1000;
 		ccbLogin.querySelector('input[name="form[login]"]').value = login;
 		ccbLogin.querySelector('input[name="form[password]"]').value = password;
 		ccbLogin.submit();
-	}else{
-		let time = 0;
 	}
 	setTimeout(function(){ 
 		craftLogin.submit(); 

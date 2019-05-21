@@ -22,7 +22,7 @@ use craft\base\Component;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.5
+ * @since     1.0.6
  */
 class API extends Component
 {
@@ -128,15 +128,12 @@ class API extends Component
                 'authenticated'=>false,
             ];
             
-
-
-            $errorArray = [];
-
+            $errorString = '';
             if($profileRequest->errors['count'] > 0){
                 foreach($profileRequest->errors->error as $error){
-                    $errorArray[] = [(int)$error['number']=>(string)$error['error']];
+                    $errorString .= (string)$error['error'].' ';
                 }
-                $user[] = $errorArray;
+                $user['error'] = $errorString;
             }
 
         }

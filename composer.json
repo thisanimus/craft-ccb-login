@@ -1,7 +1,7 @@
 {
     "name": "countrysidebible/craft-ccb-login",
     "description": "Log in via the CCB API, and log user info in session.",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "type": "craft-plugin",
     "keywords": [
         "craft",
