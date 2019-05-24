@@ -18,7 +18,7 @@
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.7
+ * @since     1.0.8
  */
 return [
     'craft-ccb-login plugin loaded' => 'craft-ccb-login plugin loaded',

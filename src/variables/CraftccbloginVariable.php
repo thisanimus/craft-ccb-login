@@ -17,7 +17,7 @@ use Craft;
 /**
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.7
+ * @since     1.0.8
  */
 class CraftccbloginVariable
 {

@@ -55,7 +55,7 @@ Access the session vars in your template using the included plugin twig var:
 ```html
 {{ dump(craft.craftccblogin.userSession) }}
 ```
-This gives you access to a user's authentication status and group memberships.  You can use these as conditions when determining what gets rendered in the twig template. 
+This gives you access to a user's authentication status, profile info, and group memberships.  You can use these as conditions when determining what gets rendered in the twig template. 
 
 
 ## Twig Templates

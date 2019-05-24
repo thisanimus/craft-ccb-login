@@ -37,7 +37,7 @@ use yii\base\Event;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.7
+ * @since     1.0.8
  *
  * @property  CraftccbloginServiceService $craftccbloginService
  * @property  Settings $settings
@@ -51,7 +51,7 @@ class Craftccblogin extends Plugin
     /**
      * @var string
      */
-    public $schemaVersion = '1.0.7';
+    public $schemaVersion = '1.0.8';
 
     public function init()
     {
