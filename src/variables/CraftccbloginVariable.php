@@ -32,7 +32,7 @@ class CraftccbloginVariable
     public function userSession()
     {   
         $session = new craft\web\Session;
-        $userSession = ['authenticated' => false];
+        $userSession = ['ccb_authenticated' => false];
 
         foreach($session as $var=>$val){
             $userSession[$var] = $val;

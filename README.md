@@ -29,26 +29,24 @@ In the Craft Control Panel, enter your CCB API User Credentials.  These will be 
 ## Overview
 
 - User submits a username and password through a form on the front end of your site.
-- The plugin passes those creds to the "individual_profile_from_login_password" service of the CCB API.
-- If the user exists in CCB, the plugin then fetches the groups this person is a part of, their name, and profile picture.
+- The plugin passes those creds to the "individual_profile_from_login_password" service of the [CCB API](https://designccb.s3.amazonaws.com/helpdesk/files/official_docs/api.html).
+- If the user exists in CCB, the plugin then fetches the user's profile, and the IDs of the groups this person is a part of.
 - The plugin sets the authentication status and the user information as session variables.
 
 #### Successful Login
 ```php
 $_SESSION = [
-	'authenticated':true,
-	'id'=>1,
-	'name'=>'Firstname McLastnamerson',
-	'image'=>'https://https://ccbchurch.s3.amazonaws.com/r09r823098230948etcetcetc',
-	'groups'=>[1,5,34,388]
+	'ccb_authenticated':true,
+	'ccb_individual'=>[/* The whole CCB Individual Response */],
+	'ccb_groups'=>[1,5,34,388]
 ];
 ```
 
 #### Unsuccessful Login
 ```php
 $_SESSION = [
-	'authenticated':false,
-	'error'=>'Whatever error the CCB API throws'
+	'ccb_authenticated':false,
+	'ccb_error'=>'Whatever error the CCB API throws'
 ];
 ```
 
@@ -98,7 +96,7 @@ Here are some templates to get you started:
 ```html
 {% set session = craft.craftccblogin.userSession %}
 
-{% if session.authenticated == false %}
+{% if session.ccb_authenticated == false %}
 	{% if session.error is defined %}
 		<div class="alert">
 			{{ session.error }}
@@ -107,16 +105,23 @@ Here are some templates to get you started:
 	<form id="craftLogin" method="post" accept-charset="UTF-8">
 		{{ csrfInput() }}
 		<input type="hidden" name="action" value="craft-ccb-login/default/">
-		<label>Login</label>
-		<input type="text" name="formLogin" value="" placeholder="Login"><br>
+		<label>Username</label>
+		<input type="text" name="formLogin" value="" placeholder="username">
 		<label>Password</label>
-		<input type="password" name="formPassword" value="" placeholder="Password"><br>
+		<input type="password" name="formPassword" value="" placeholder="password">
 		<input type="checkbox" name="formCCB" value="1">
-		<label>Log me in to Community too.</label><br>
-		This will open a new tab and log you in to Church Community Builder at the same time you are being logged into the Countryside Bible Church website.
-		<br />
+		<label style="display:inline-block;">Log me in to Community.</label>
+		<p>
+			This will open a new tab and log you in to Church Community Builder at the same time you are being logged into this website.
+		</p>
 		<input type="submit" value="Login">
 	</form>
+	{% if session.ccb_error is defined %}
+		<div class="alert warning">
+			<p>{{ session.ccb_error }}</p>
+		</div>
+	{% endif %}
+	<br>
 	<a href="https://yourChurchName.ccbchurch.com/w_password.php">Forgot Password?</a><br>
 	<a href="https://yourChurchName.ccbchurch.com/w_sign_up.php">Sign Up</a>
 
@@ -127,13 +132,14 @@ Here are some templates to get you started:
 		<input type="submit" value="Login">
 	</form>
 
-{% elseif session.authenticated == true %}
-	<img src="{{ craft.craftccblogin.userSession.image }}"/>
-	<h1>{{ session.name }}</h1>
-	{% if session.groups|length > 0 %}
+{% elseif session.ccb_authenticated == true %}
+
+	<img src="{{ session.ccb_individual.image }}"/>
+	<h1>{{ session.ccb_individual.full_name }}</h1>
+	{% if session.ccb_groups|length > 0 %}
 		<h3>Group IDs:</h3>
 		<ul>
-			{% for group in session.groups %}
+			{% for group in session.ccb_groups %}
 				<li>{{ group }}</li>
 			{% endfor %}
 		</ul>
@@ -182,10 +188,6 @@ craftLogin.addEventListener('submit', function(e){
 
 
 
-## craft-ccb-login Roadmap
+## Credits
 
-Some things to do, and ideas for potential features:
-
-* Release it
-
-Brought to you by [Andrew Hale](https://thisanimus.com)
+Praise and rotten tomatoes alike may be lobbed at [Andrew Hale](https://thisanimus.com).

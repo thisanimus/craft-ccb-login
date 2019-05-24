@@ -40,12 +40,10 @@ class API extends Component
     public function logout(){
         $session = new craft\web\Session;
         
-        $session->set('authenticated', false);
-        $session->has('id') ? $session->remove('id') : false;
-        $session->has('name') ? $session->remove('name') : false;
-        $session->has('groups') ? $session->remove('groups') : false;
-        $session->has('image') ? $session->remove('image') : false;
-        $session->has('error') ? $session->remove('error') : false;
+        $session->set('ccb_authenticated', false);
+        $session->has('ccb_individual') ? $session->remove('ccb_individual') : false;
+        $session->has('ccb_groups') ? $session->remove('ccb_groups') : false;
+        $session->has('ccb_error') ? $session->remove('ccb_error') : false;
     }
 
     public function getUserGroups($id) 
@@ -97,11 +95,8 @@ class API extends Component
 
         if($profileRequest->individuals['count'] == 1){
 
-            $id = (int)$profileRequest->individuals->individual['id'];
-            $name = (string)$profileRequest->individuals->individual->full_name;
-            $image = (string)$profileRequest->individuals->individual->image;
-
-            $groups = $this->getUserGroups($id);
+            $individual = (array)json_decode(json_encode($profileRequest->individuals->individual), true);
+            $groups = $this->getUserGroups((int)$profileRequest->individuals->individual['id']);
 
             $groupsArray = [];
 
@@ -112,20 +107,17 @@ class API extends Component
             }
 
             $user = [
-                'authenticated'=>true,
-                'id'=>$id,
-                'name'=>$name,
-                'image'=>$image,
-                'groups'=>$groupsArray
+                'ccb_authenticated'=>true,
+                'ccb_individual'=>$individual,
+                'ccb_groups'=>$groupsArray
             ];
 
-            
         }else{
 
             $this->logout();
 
             $user = [
-                'authenticated'=>false,
+                'ccb_authenticated'=>false,
             ];
             
             $errorString = '';
