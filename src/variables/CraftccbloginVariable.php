@@ -8,16 +8,16 @@
  * @copyright Copyright (c) 2019 Andrew Hale
  */
 
-namespace countrysidebible\craftccblogin\variables;
+namespace thisanimus\craftccblogin\variables;
 
-use countrysidebible\craftccblogin\Craftccblogin;
+use thisanimus\craftccblogin\Craftccblogin;
 
 use Craft;
 
 /**
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.8
+ * @since     1.0.9
  */
 class CraftccbloginVariable
 {

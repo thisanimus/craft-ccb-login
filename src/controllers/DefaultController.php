@@ -8,12 +8,12 @@
  * @copyright Copyright (c) 2019 Andrew Hale
  */
 
-namespace countrysidebible\craftccblogin\controllers;
+namespace thisanimus\craftccblogin\controllers;
 
-use countrysidebible\craftccblogin\Craftccblogin;
+use thisanimus\craftccblogin\Craftccblogin;
 
 use Craft;
-use countrysidebible\craftccblogin\services\API;
+use thisanimus\craftccblogin\services\API;
 use craft\web\Controller;
 use yii\web\Response;
 

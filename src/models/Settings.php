@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2019 Andrew Hale
  */
 
-namespace countrysidebible\craftccblogin\models;
+namespace thisanimus\craftccblogin\models;
 
-use countrysidebible\craftccblogin\Craftccblogin;
+use thisanimus\craftccblogin\Craftccblogin;
 
 use Craft;
 use craft\base\Model;
@@ -22,7 +22,7 @@ use craft\base\Model;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.8
+ * @since     1.0.9
  */
 class Settings extends Model
 {

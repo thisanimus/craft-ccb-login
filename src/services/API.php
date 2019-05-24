@@ -8,10 +8,10 @@
  * @copyright Copyright (c) 2019 Andrew Hale
  */
 
-namespace countrysidebible\craftccblogin\services;
+namespace thisanimus\craftccblogin\services;
 
-use countrysidebible\craftccblogin\Craftccblogin;
-use countrysidebible\craftccblogin\models\Settings;
+use thisanimus\craftccblogin\Craftccblogin;
+use thisanimus\craftccblogin\models\Settings;
 //use CCB;
 use Craft;
 use craft\base\Component;
@@ -22,7 +22,7 @@ use craft\base\Component;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.8
+ * @since     1.0.9
  */
 class API extends Component
 {

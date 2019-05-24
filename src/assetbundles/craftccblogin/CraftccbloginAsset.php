@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2019 Andrew Hale
  */
 
-namespace countrysidebible\craftccblogin\assetbundles\Craftccblogin;
+namespace thisanimus\craftccblogin\assetbundles\Craftccblogin;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -43,7 +43,7 @@ class CraftccbloginAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@countrysidebible/craftccblogin/assetbundles/craftccblogin/dist";
+        $this->sourcePath = "@thisanimus/craftccblogin/assetbundles/craftccblogin/dist";
 
         // define the dependencies
         $this->depends = [

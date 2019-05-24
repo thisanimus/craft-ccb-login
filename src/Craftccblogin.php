@@ -9,11 +9,11 @@
  */
 
 
-namespace countrysidebible\craftccblogin;
+namespace thisanimus\craftccblogin;
 
-use countrysidebible\craftccblogin\services\CraftccbloginService as CraftccbloginServiceService;
-use countrysidebible\craftccblogin\variables\CraftccbloginVariable;
-use countrysidebible\craftccblogin\models\Settings;
+use thisanimus\craftccblogin\services\CraftccbloginService as CraftccbloginServiceService;
+use thisanimus\craftccblogin\variables\CraftccbloginVariable;
+use thisanimus\craftccblogin\models\Settings;
 
 use Craft;
 use craft\base\Plugin;
@@ -37,7 +37,7 @@ use yii\base\Event;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.8
+ * @since     1.0.9
  *
  * @property  CraftccbloginServiceService $craftccbloginService
  * @property  Settings $settings
@@ -51,7 +51,7 @@ class Craftccblogin extends Plugin
     /**
      * @var string
      */
-    public $schemaVersion = '1.0.8';
+    public $schemaVersion = '1.0.9';
 
     public function init()
     {

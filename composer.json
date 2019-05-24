@@ -1,7 +1,7 @@
 {
-    "name": "countrysidebible/craft-ccb-login",
+    "name": "thisanimus/craft-ccb-login",
     "description": "Log in via the CCB API, and log user info in session.",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "type": "craft-plugin",
     "keywords": [
         "craft",
@@ -11,8 +11,8 @@
         "craft-ccb-login"
     ],
     "support": {
-        "docs": "https://github.com/countrysidebible/craft-ccb-login/blob/master/README.md",
-        "issues": "https://github.com/countrysidebible/craft-ccb-login/issues"
+        "docs": "https://github.com/thisanimus/craft-ccb-login/blob/master/README.md",
+        "issues": "https://github.com/thisanimus/craft-ccb-login/issues"
     },
     "license": "MIT",
     "authors": [
@@ -23,11 +23,11 @@
     ],
     "require": {
         "craftcms/cms": "^3.0.0-RC1",
-        "countrysidebible/ccb-api-connect": "^2.0.0"
+        "thisanimus/ccb-api-connect": "^2.0.0"
     },
     "autoload": {
         "psr-4": {
-          "countrysidebible\\craftccblogin\\": "src/"
+          "thisanimus\\craftccblogin\\": "src/"
         }
     },
     "extra": {
@@ -35,10 +35,10 @@
         "handle": "craft-ccb-login",
         "hasCpSettings": true,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/countrysidebible/craft-ccb-login/master/CHANGELOG.md",
+        "changelogUrl": "https://raw.githubusercontent.com/thisanimus/craft-ccb-login/master/CHANGELOG.md",
         "components": {
-            "craftccbloginService": "countrysidebible\\craftccblogin\\services\\CraftccbloginService"
+            "craftccbloginService": "thisanimus\\craftccblogin\\services\\CraftccbloginService"
         },
-        "class": "countrysidebible\\craftccblogin\\Craftccblogin"
+        "class": "thisanimus\\craftccblogin\\Craftccblogin"
     }
 }
