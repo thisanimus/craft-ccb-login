@@ -22,7 +22,7 @@ use craft\base\Model;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.10
+ * @since     1.0.11
  */
 class Settings extends Model
 {
@@ -41,7 +41,7 @@ class Settings extends Model
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['ccbApiUser', 'string'],

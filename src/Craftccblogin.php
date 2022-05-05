@@ -17,8 +17,7 @@ use thisanimus\craftccblogin\models\Settings;
 
 use Craft;
 use craft\base\Plugin;
-use craft\services\Plugins;
-use craft\events\PluginEvent;
+use craft\base\Model;
 use craft\web\UrlManager;
 use craft\web\twig\variables\CraftVariable;
 use craft\events\RegisterUrlRulesEvent;
@@ -37,7 +36,7 @@ use yii\base\Event;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.10
+ * @since     1.0.11
  *
  * @property  CraftccbloginServiceService $craftccbloginService
  * @property  Settings $settings
@@ -46,12 +45,12 @@ use yii\base\Event;
 class Craftccblogin extends Plugin
 {
 
-    public static $plugin;
+    public static Plugin $plugin;
 
     /**
      * @var string
      */
-    public $schemaVersion = '1.0.10';
+    public string $schemaVersion = '1.0.11';
 
     public function init()
     {
@@ -95,7 +94,7 @@ class Craftccblogin extends Plugin
      *
      * @return \craft\base\Model|null
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }
@@ -103,7 +102,7 @@ class Craftccblogin extends Plugin
     /**
      * @return string The rendered settings HTML
      */
-    protected function settingsHtml(): string
+    protected function settingsHtml(): ?string
     {
         return Craft::$app->view->renderTemplate(
             'craft-ccb-login/settings',

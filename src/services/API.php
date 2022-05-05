@@ -22,7 +22,7 @@ use craft\base\Component;
  *
  * @author    Andrew Hale
  * @package   Craftccblogin
- * @since     1.0.10
+ * @since     1.0.11
  */
 class API extends Component
 {
