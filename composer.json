@@ -7,11 +7,11 @@
 		"cms",
 		"craftcms",
 		"craft-plugin",
-		"craft-ccb-login"
+		"ccb-login"
 	],
 	"support": {
-		"docs": "https://github.com/thisanimus/craft-ccb-login/blob/master/README.md",
-		"issues": "https://github.com/thisanimus/craft-ccb-login/issues"
+		"docs": "https://github.com/thisanimus/ccb-login/blob/master/README.md",
+		"issues": "https://github.com/thisanimus/ccb-login/issues"
 	},
 	"license": "MIT",
 	"authors": [
@@ -26,29 +26,14 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"thisanimus\\craftccblogin\\": "src/"
+			"thisanimus\\CCBLogin\\": "src/"
 		}
 	},
 	"extra": {
-		"name": "Craft CCB Login",
-		"handle": "craft-ccb-login",
+		"name": "CCB Login",
+		"handle": "ccb-login",
 		"hasCpSettings": true,
 		"hasCpSection": false,
-		"changelogUrl": "https://raw.githubusercontent.com/thisanimus/craft-ccb-login/master/CHANGELOG.md",
-		"components": {
-			"craftccbloginService": "thisanimus\\craftccblogin\\services\\CraftccbloginService"
-		},
-		"class": "thisanimus\\craftccblogin\\Craftccblogin"
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true,
-	"require-dev": {
-		"craftcms/rector": "dev-main"
-	},
-	"config": {
-		"allow-plugins": {
-			"yiisoft/yii2-composer": true,
-			"craftcms/plugin-installer": true
-		}
+		"changelogUrl": "https://raw.githubusercontent.com/thisanimus/ccb-login/master/CHANGELOG.md"
 	}
 }

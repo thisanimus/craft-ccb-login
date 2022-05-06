@@ -8,19 +8,17 @@
  * @copyright Copyright (c) 2019 Andrew Hale
  */
 
-namespace thisanimus\craftccblogin\variables;
+namespace thisanimus\CCBLogin\variables;
 
-use thisanimus\craftccblogin\Craftccblogin;
+use craft\web\Session;
 
 use Craft;
 
 /**
  * @author    Andrew Hale
- * @package   Craftccblogin
- * @since     1.0.11
+ * @package   CCBLogin
  */
-class CraftccbloginVariable
-{
+class Variables{
     // Public Methods
     // =========================================================================
 
@@ -28,10 +26,10 @@ class CraftccbloginVariable
      * @param null $optional
      * @return string
      */
-    // {{ craft.craftccblogin.userSession }}//
+    // {{ craft.ccblogin.userSession }}//
     public function userSession()
     {   
-        $session = new craft\web\Session;
+        $session = new Session;
         $userSession = ['ccb_authenticated' => false];
 
         foreach($session as $var=>$val){

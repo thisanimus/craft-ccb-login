@@ -1,44 +1,22 @@
 <?php
-/**
- * craft-ccb-login plugin for Craft CMS 3.x
- *
- * Log in via the CCB API, and log user info in session.
- *
- * @link      thisanimus.com
- * @copyright Copyright (c) 2019 Andrew Hale
- */
+namespace thisanimus\CCBLogin\services;
 
-namespace thisanimus\craftccblogin\services;
-
-use thisanimus\craftccblogin\Craftccblogin;
-use thisanimus\craftccblogin\models\Settings;
-//use CCB;
-use Craft;
+use thisanimus\CCBLogin\Plugin;
+use thisanimus\CCBLogin\models\Settings;
+use craft\web\Session;
 use craft\base\Component;
+use CCB\Api as CCBAPI;
 
-/**
- * 
- * https://craftcms.com/docs/plugins/services
- *
- * @author    Andrew Hale
- * @package   Craftccblogin
- * @since     1.0.11
- */
-class API extends Component
-{
+class CCBService extends Component{
+    
 
-    /**
-     * @return mixed
-     */
-
-    protected function apiConnect(){
-
-        $apiConnect = new \CCB\Api(Craftccblogin::$plugin->getSettings()->ccbApiUser, Craftccblogin::$plugin->getSettings()->ccbApiPassword, Craftccblogin::$plugin->getSettings()->ccbApiUrl);
-        return $apiConnect;
+	protected function apiConnect(){
+        $settings = Plugin::getInstance()->getSettings();
+        return new CCBAPI($settings->ccbApiUser, $settings->ccbApiPassword, $settings->ccbApiUrl);
     }
 
     public function logout(){
-        $session = new craft\web\Session;
+        $session = new Session;
         
         $session->set('ccb_authenticated', false);
         $session->has('ccb_individual') ? $session->remove('ccb_individual') : false;
@@ -74,7 +52,7 @@ class API extends Component
 
         $ccb = $this->apiConnect();
 
-        $session = new craft\web\Session;
+        $session = new Session;
 
         $query = [
             'srv'=>'individual_profile_from_login_password'

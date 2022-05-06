@@ -1,67 +1,20 @@
 <?php
-/**
- * craft-ccb-login plugin for Craft CMS 3.x
- *
- * des
- *
- * @link      thisanimus.com
- * @copyright Copyright (c) 2019 Andrew Hale
- */
 
-namespace thisanimus\craftccblogin\controllers;
+namespace thisanimus\CCBLogin\controllers;
 
-use thisanimus\craftccblogin\Craftccblogin;
+use thisanimus\CCBLogin\Plugin;
 
 use Craft;
-use thisanimus\craftccblogin\services\API;
+use thisanimus\CCBLogin\services\CCBService;
 use craft\web\Controller;
 use yii\web\Response;
 
-/**
- * Default Controller
- *
- * Generally speaking, controllers are the middlemen between the front end of
- * the CP/website and your plugin’s services. They contain action methods which
- * handle individual tasks.
- *
- * A common pattern used throughout Craft involves a controller action gathering
- * post data, saving it on a model, passing the model off to a service, and then
- * responding to the request appropriately depending on the service method’s response.
- *
- * Action methods begin with the prefix “action”, followed by a description of what
- * the method does (for example, actionSaveIngredient()).
- *
- * https://craftcms.com/docs/plugins/controllers
- *
- * @author    Andrew Hale
- * @package   Craftccblogin
- * @since     1.0.0
- */
-class DefaultController extends Controller
-{
+class DefaultController extends Controller{
+    //protected int|bool|array $allowAnonymous = ['index'];
 
-    // Protected Properties
-    // =========================================================================
-
-    /**
-     * @var    bool|array Allows anonymous access to this controller's actions.
-     *         The actions must be in 'kebab-case'
-     * @access protected
-     */
-    protected int|bool|array $allowAnonymous = ['index', 'do-something'];
-
-    // Public Methods
-    // =========================================================================
-
-    /**
-     * Handle a request going to our plugin's index action URL,
-     * e.g.: actions/craft-ccb-login/default
-     *
-     * @return mixed
-     */
-    public function actionIndex()
+	public function actionIndex()
     {
-        $ccb = new API;
+        $ccb = new CCBService;
         $this->requirePostRequest();
         $request = Craft::$app->getRequest();
 
@@ -70,18 +23,5 @@ class DefaultController extends Controller
         }else{
             $ccb->getUser($request->getBodyParam('formLogin'),$request->getBodyParam('formPassword'));
         }
-    }
-
-    /**
-     * Handle a request going to our plugin's actionDoSomething URL,
-     * e.g.: actions/craft-ccb-login/default/do-something
-     *
-     * @return mixed
-     */
-    public function actionDoSomething()
-    {
-        $result = 'Welcome to the DefaultController actionDoSomething() method';
-
-        return $result;
     }
 }

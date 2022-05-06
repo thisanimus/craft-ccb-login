@@ -1,7 +1,7 @@
 {
-	"pluginName": "Craft CCB Login",
+	"pluginName": "CCB Login",
 	"pluginDescription": "Log in via the CCB API, and log user info in session.",
-	"pluginVersion": "1.0.11",
+	"pluginVersion": "2.0.0",
 	"pluginAuthorName": "Andrew Hale",
 	"pluginVendorName": "thisanimus",
 	"pluginAuthorUrl": "https://thisanimus.com",

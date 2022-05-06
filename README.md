@@ -53,7 +53,7 @@ $_SESSION = [
 #### Session Vars
 Access the session vars in your template using the included plugin twig var:
 ```html
-{{ dump(craft.craftccblogin.userSession) }}
+{{ dump(craft.ccblogin.userSession) }}
 ```
 This gives you access to a user's authentication status, profile info, and group memberships.  You can use these as conditions when determining what gets rendered in the twig template. 
 
@@ -66,7 +66,7 @@ Here are some templates to get you started:
 ```html
 <form id="craftLogin" method="post" accept-charset="UTF-8">
 	{{ csrfInput() }}
-	<input type="hidden" name="action" value="craft-ccb-login/default/">
+	<input type="hidden" name="action" value="ccb-login/default/">
 	<label>Username</label>
 	<input type="text" name="formLogin" value="">
 	<br />
@@ -84,7 +84,7 @@ Here are some templates to get you started:
 ```html
 <form method="post" accept-charset="UTF-8">
 	{{ csrfInput() }}
-	<input type="hidden" name="action" value="craft-ccb-login/default/">
+	<input type="hidden" name="action" value="ccb-login/default/">
 	<input type="hidden" name="formLogout" value="true">
 	<input type="submit" value="Logout">
 </form>
@@ -94,7 +94,7 @@ Here are some templates to get you started:
 #### Conditional Markup with CCB Login Sync
 
 ```html
-{% set session = craft.craftccblogin.userSession %}
+{% set session = craft.ccblogin.userSession %}
 
 {% if session.ccb_authenticated == false %}
 	{% if session.error is defined %}
@@ -104,7 +104,7 @@ Here are some templates to get you started:
 	{% endif %}
 	<form id="craftLogin" method="post" accept-charset="UTF-8">
 		{{ csrfInput() }}
-		<input type="hidden" name="action" value="craft-ccb-login/default/">
+		<input type="hidden" name="action" value="ccb-login/default/">
 		<label>Username</label>
 		<input type="text" name="formLogin" value="" placeholder="username">
 		<label>Password</label>
@@ -147,7 +147,7 @@ Here are some templates to get you started:
 
 	<form method="post" accept-charset="UTF-8">
 		{{ csrfInput() }}
-		<input type="hidden" name="action" value="craft-ccb-login/default/">
+		<input type="hidden" name="action" value="ccb-login/default/">
 		<input type="hidden" name="formLogout" value="true">
 		<input type="submit" value="Logout">
 	</form>
