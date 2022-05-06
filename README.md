@@ -2,7 +2,7 @@
 
 A session-based login for Craft CMS 3.X that authenticates users via the Church Community Builder API.
 
-![Screenshot](resources/img/plugin-logo.png)
+![Screenshot](src/icon.svg)
 
 ## Requirements
 
