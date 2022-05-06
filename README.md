@@ -1,6 +1,6 @@
-# CCB API Authentication for Craft CMS 3.x
+# CCB API Authentication for Craft CMS 3.x/4.x
 
-A session-based login for Craft CMS 3.X that authenticates users via the Church Community Builder API.
+A session-based login for Craft CMS 3.x/4.x that authenticates users via the Church Community Builder API.
 
 ![Screenshot](src/icon.svg)
 
