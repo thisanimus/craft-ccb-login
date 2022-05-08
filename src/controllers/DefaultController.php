@@ -10,7 +10,7 @@ use craft\web\Controller;
 use yii\web\Response;
 
 class DefaultController extends Controller{
-    //protected int|bool|array $allowAnonymous = ['index'];
+    protected int|bool|array $allowAnonymous = true;
 
 	public function actionIndex()
     {
