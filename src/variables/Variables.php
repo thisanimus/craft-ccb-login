@@ -10,8 +10,6 @@
 
 namespace thisanimus\CCBLogin\variables;
 
-use craft\web\Session;
-
 use Craft;
 
 /**
@@ -29,7 +27,7 @@ class Variables{
     // {{ craft.ccblogin.userSession }}//
     public function userSession()
     {   
-        $session = new Session;
+        $session = Craft::$app->session;
         $userSession = ['ccb_authenticated' => false];
 
         foreach($session as $var=>$val){

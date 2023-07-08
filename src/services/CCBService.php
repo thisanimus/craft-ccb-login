@@ -1,9 +1,8 @@
 <?php
 namespace thisanimus\CCBLogin\services;
 
+use Craft;
 use thisanimus\CCBLogin\Plugin;
-use thisanimus\CCBLogin\models\Settings;
-use craft\web\Session;
 use craft\base\Component;
 use CCB\Api as CCBAPI;
 
@@ -16,7 +15,8 @@ class CCBService extends Component{
     }
 
     public function logout(){
-        $session = new Session;
+        
+        $session = Craft::$app->session;
         
         $session->set('ccb_authenticated', false);
         $session->has('ccb_individual') ? $session->remove('ccb_individual') : false;
@@ -52,7 +52,7 @@ class CCBService extends Component{
 
         $ccb = $this->apiConnect();
 
-        $session = new Session;
+        $session = Craft::$app->session;
 
         $query = [
             'srv'=>'individual_profile_from_login_password'
