@@ -1,4 +1,5 @@
 <?php
+
 namespace thisanimus\CCBLogin\services;
 
 use Craft;
@@ -6,112 +7,107 @@ use thisanimus\CCBLogin\Plugin;
 use craft\base\Component;
 use CCB\Api as CCBAPI;
 
-class CCBService extends Component{
-    
+class CCBService extends Component {
 
-	protected function apiConnect(){
-        $settings = Plugin::getInstance()->getSettings();
-        return new CCBAPI($settings->ccbApiUser, $settings->ccbApiPassword, $settings->ccbApiUrl);
-    }
 
-    public function logout(){
-        
-        $session = Craft::$app->session;
-        
-        $session->set('ccb_authenticated', false);
-        $session->has('ccb_individual') ? $session->remove('ccb_individual') : false;
-        $session->has('ccb_groups') ? $session->remove('ccb_groups') : false;
-        $session->has('ccb_error') ? $session->remove('ccb_error') : false;
-    }
+	protected function apiConnect() {
+		$settings = Plugin::getInstance()->getSettings();
+		return new CCBAPI($settings->ccbApiUser, $settings->ccbApiPassword, $settings->ccbApiUrl);
+	}
 
-    public function getUserGroups($id) 
-    {
+	public function logout() {
 
-        $ccb = $this->apiConnect();
+		$session = Craft::$app->session;
 
-        $query = [
-            'srv'=>'individual_groups',
-            'individual_id'=>$id
+		$session->set('ccb_authenticated', false);
+		$session->has('ccb_individual') ? $session->remove('ccb_individual') : false;
+		$session->has('ccb_groups') ? $session->remove('ccb_groups') : false;
+		$session->has('ccb_error') ? $session->remove('ccb_error') : false;
+	}
 
-        ];
+	public function getUserGroups($id) {
 
-        $data = '';
+		$ccb = $this->apiConnect();
 
-        $groupsRequest = $ccb->request($query, $data, 'GET');
+		$query = [
+			'srv' => 'individual_groups',
+			'individual_id' => $id
+		];
 
-        if($groupsRequest->individuals->individual->groups['count'] > 0){
-            $return = $groupsRequest->individuals->individual->groups;
-        }else{
-            $return = false;
-        }
-        return $return;
-    }
+		$data = [];
 
-    public function getUser($login, $password) 
-    {
+		$groupsRequest = $ccb->request($query, $data, 'GET');
 
-        $ccb = $this->apiConnect();
+		if ($groupsRequest->individuals->individual->groups['count'] > 0) {
+			$return = $groupsRequest->individuals->individual->groups;
+		} else {
+			$return = false;
+		}
+		return $return;
+	}
 
-        $session = Craft::$app->session;
+	public function getUser($login, $password) {
 
-        $query = [
-            'srv'=>'individual_profile_from_login_password'
-        ];
+		$ccb = $this->apiConnect();
 
-        $data = [];
+		$session = Craft::$app->session;
 
-        if(!empty($login)){
-            $data['login'] = $login;
-        }
-        if(!empty($password)){
-            $data['password'] = $password;
-        }
+		$query = [
+			'srv' => 'individual_profile_from_login_password'
+		];
 
-        $profileRequest = $ccb->request($query, $data, 'GET');
+		$data = [];
 
-        $user = [];
+		if (!empty($login)) {
+			$data['login'] = $login;
+		}
+		if (!empty($password)) {
+			$data['password'] = $password;
+		}
 
-        if($profileRequest->individuals['count'] == 1){
+		$profileRequest = $ccb->request($query, $data, 'POST');
 
-            $individual = (array)json_decode(json_encode($profileRequest->individuals->individual), true);
-            $groups = $this->getUserGroups((int)$profileRequest->individuals->individual['id']);
+		$user = [];
 
-            $groupsArray = [];
+		if ($profileRequest->individuals['count'] == 1) {
 
-            if($groups != false){
-                foreach($groups->group as $group){
-                    $groupsArray[] = (int)$group->id;
-                }
-            }
+			$individual = (array)json_decode(json_encode($profileRequest->individuals->individual), true);
+			$groups = $this->getUserGroups((int)$profileRequest->individuals->individual['id']);
 
-            $user = [
-                'ccb_authenticated'=>true,
-                'ccb_individual'=>$individual,
-                'ccb_groups'=>$groupsArray
-            ];
+			$groupsArray = [];
 
-        }else{
+			if ($groups != false) {
+				foreach ($groups->group as $group) {
+					$groupsArray[] = (int)$group->id;
+				}
+			}
 
-            $this->logout();
+			$user = [
+				'ccb_authenticated' => true,
+				'ccb_individual' => $individual,
+				'ccb_groups' => $groupsArray
+			];
+		} else {
 
-            $user = [
-                'ccb_authenticated'=>false,
-            ];
-            
-            $errorString = '';
-            if($profileRequest->errors['count'] > 0){
-                foreach($profileRequest->errors->error as $error){
-                    $errorString .= (string)$error['error'].' ';
-                }
-                $user['error'] = $errorString;
-            }
+			$this->logout();
 
-        }
+			$user = [
+				'ccb_authenticated' => false,
+			];
 
-        foreach($user as $var=>$val){
-            $session->set($var, $val);
-        }
+			$errorString = '';
+			if ($profileRequest->errors['count'] > 0) {
+				foreach ($profileRequest->errors->error as $error) {
+					$errorString .= (string)$error['error'] . ' ';
+				}
+				$user['error'] = $errorString;
+			}
+		}
 
-        return $user;
-    }
+		foreach ($user as $var => $val) {
+			$session->set($var, $val);
+		}
+
+		return $user;
+	}
 }

@@ -1,37 +1,37 @@
 {# @var craft \craft\web\twig\variables\CraftVariable #}
 {#
 /**
- * craft-ccb-login plugin for Craft CMS 3.x
- *
- * craft-ccb-login Settings.twig
- *
- * @author    Andrew Hale
- * @copyright Copyright (c) 2019 Andrew Hale
- * @link      thisanimus.com
- * @package   CCBLogin
- */
+* craft-ccb-login plugin for Craft CMS 3.x
+*
+* craft-ccb-login Settings.twig
+*
+* @author    Andrew Hale
+* @copyright Copyright (c) 2019 Andrew Hale
+* @link      thisanimus.com
+* @package   CCBLogin
+*/
 #}
 
 {% import "_includes/forms" as forms %}
 
 {{ forms.textField({
-    label: 'CCB API User',
-    instructions: 'Enter the CCB API User Name',
-    id: 'ccbApiUser',
-    name: 'ccbApiUser',
-    value: settings['ccbApiUser']})
+	label: 'CCB API User',
+	instructions: 'Enter the CCB API User Name',
+	id: 'ccbApiUser',
+	name: 'ccbApiUser',
+	value: settings['ccbApiUser']})
 }}
 {{ forms.textField({
-    label: 'CCB API Password',
-    instructions: 'Enter the CCB API Password',
-    id: 'ccbApiPassword',
-    name: 'ccbApiPassword',
-    value: settings['ccbApiPassword']})
+	label: 'CCB API Password',
+	instructions: 'Enter the CCB API Password',
+	id: 'ccbApiPassword',
+	name: 'ccbApiPassword',
+	value: settings['ccbApiPassword']})
 }}
 {{ forms.textField({
-    label: 'CCB API Url',
-    instructions: 'Enter the CCB API Url',
-    id: 'ccbApiUrl',
-    name: 'ccbApiUrl',
-    value: settings['ccbApiUrl']})
+	label: 'CCB API Url',
+	instructions: 'Enter the CCB API Url',
+	id: 'ccbApiUrl',
+	name: 'ccbApiUrl',
+	value: settings['ccbApiUrl']})
 }}
