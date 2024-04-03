@@ -53,7 +53,7 @@ $_SESSION = [
 
 #### Session Vars
 Access the session vars in your template using the included plugin twig var:
-```html
+```twig
 {{ dump(craft.ccblogin.userSession) }}
 ```
 This gives you access to a user's authentication status, profile info, and group memberships.  You can use these as conditions when determining what gets rendered in the twig template. 
@@ -82,7 +82,7 @@ Here are some templates to get you started:
 ```
 
 #### Logout
-```html
+```twig
 <form method="post" accept-charset="UTF-8">
 	{{ csrfInput() }}
 	<input type="hidden" name="action" value="ccb-login/default/">
@@ -94,7 +94,7 @@ Here are some templates to get you started:
 
 #### Conditional Markup with CCB Login Sync
 
-```html
+```twig
 {% set session = craft.ccblogin.userSession %}
 
 {% if session.ccb_authenticated == false %}
