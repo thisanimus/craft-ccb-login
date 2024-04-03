@@ -64,7 +64,7 @@ This gives you access to a user's authentication status, profile info, and group
 Here are some templates to get you started:
 
 #### Login
-```html
+```twig
 <form id="craftLogin" method="post" accept-charset="UTF-8">
 	{{ csrfInput() }}
 	<input type="hidden" name="action" value="ccb-login/default/">
