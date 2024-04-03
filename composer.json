@@ -21,7 +21,7 @@
 		}
 	],
 	"require": {
-		"craftcms/cms": "^4.0.0",
+		"craftcms/cms": "^4.0|^5.0",
 		"thisanimus/ccb-api-connect": "^2.0.4"
 	},
 	"autoload": {
