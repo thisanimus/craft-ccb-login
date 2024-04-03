@@ -9,10 +9,11 @@ use CCB\Api as CCBAPI;
 
 class CCBService extends Component {
 
-
-	protected function apiConnect() {
+	protected $ccb;
+	public function init(): void {
+		parent::init();
 		$settings = Plugin::getInstance()->getSettings();
-		return new CCBAPI($settings->ccbApiUser, $settings->ccbApiPassword, $settings->ccbApiUrl);
+		$this->ccb = new CCBAPI($settings->ccbApiUser, $settings->ccbApiPassword, $settings->ccbApiUrl);
 	}
 
 	public function logout() {
@@ -27,8 +28,6 @@ class CCBService extends Component {
 
 	public function getUserGroups($id) {
 
-		$ccb = $this->apiConnect();
-
 		$query = [
 			'srv' => 'individual_groups',
 			'individual_id' => $id
@@ -36,7 +35,7 @@ class CCBService extends Component {
 
 		$data = [];
 
-		$groupsRequest = $ccb->request($query, $data, 'GET');
+		$groupsRequest = $this->ccb->request($query, $data, 'GET');
 
 		if ($groupsRequest->individuals->individual->groups['count'] > 0) {
 			$return = $groupsRequest->individuals->individual->groups;
@@ -47,8 +46,6 @@ class CCBService extends Component {
 	}
 
 	public function getUser($login, $password) {
-
-		$ccb = $this->apiConnect();
 
 		$session = Craft::$app->session;
 
@@ -65,7 +62,7 @@ class CCBService extends Component {
 			$data['password'] = $password;
 		}
 
-		$profileRequest = $ccb->request($query, $data, 'POST');
+		$profileRequest = $this->ccb->request($query, $data, 'POST');
 
 		$user = [];
 
