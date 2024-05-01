@@ -19,7 +19,7 @@ class CCBService extends Component {
 	public function logout() {
 
 		$session = Craft::$app->session;
-
+		Craft::$app->getResponse()->getCookies()->remove('ccb_authenticated');
 		$session->set('ccb_authenticated', false);
 		$session->has('ccb_individual') ? $session->remove('ccb_individual') : false;
 		$session->has('ccb_groups') ? $session->remove('ccb_groups') : false;
@@ -84,6 +84,18 @@ class CCBService extends Component {
 				'ccb_individual' => $individual,
 				'ccb_groups' => $groupsArray
 			];
+
+			// Create cookie object.
+			$cookie = Craft::createObject([
+				'class' => 'yii\web\Cookie',
+				'name' => 'ccb_authenticated',
+				'httpOnly' => true,
+				'value' => 'true',
+				'expire' => time() + (86400),
+			]);
+
+			// Set cookie.
+			Craft::$app->getResponse()->getCookies()->add($cookie);
 		} else {
 
 			$this->logout();
