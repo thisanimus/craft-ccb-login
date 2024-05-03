@@ -91,7 +91,6 @@ class CCBService extends Component {
 				'name' => 'ccb_authenticated',
 				'httpOnly' => true,
 				'value' => 'true',
-				'expire' => time() + (86400),
 			]);
 
 			// Set cookie.
